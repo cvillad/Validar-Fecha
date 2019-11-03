@@ -19,12 +19,13 @@ public class Date {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int option;
+        int option=1;
         do{
             Scanner sc=new Scanner(System.in);
             System.out.print("Ingrese fecha a validar: ");
-            String date = sc.nextLine();            
-            Pattern pattern=Pattern.compile("([0-2]\\d|3[01])/(0\\d|1[0-2])/\\d{4}");
+            String date = sc.nextLine();   
+            System.out.println(leapYear(Integer.parseInt(date)));
+            /*Pattern pattern=Pattern.compile("([0-2]\\d|3[01])/(0\\d|1[0-2])/\\d{4}");
             Matcher matcher=pattern.matcher(date);
             System.out.print(date+" ");
             if (matcher.matches()) {
@@ -56,13 +57,14 @@ public class Date {
                 }else System.out.println("no es válida");
             }else System.out.println("no es válida");
             System.out.print("1. Continuar    2. Salir ");
-            option=sc.nextInt();
+            option=sc.nextInt();*/
         }while(option==1);
     }
     
     public static boolean leapYear(int year){
-        if (year%4==0 /*&& Pattern.compile("(\\d{2})?").matcher(year+"").matches()*/) {
-            if (year%100!=0) {//Bisiesto
+        if (Pattern.compile("(\\d{2})?([02468]?[048]|[13579][26])").matcher(year+"").matches()) {
+            System.out.println("monda");
+            if (!Pattern.compile("(\\d{2})?0?0").matcher(year+"").matches()) {//Bisiesto
                 return true;
             }else if (year%400==0) {//Bisiesto
                 return true;
