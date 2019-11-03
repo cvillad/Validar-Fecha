@@ -7,7 +7,6 @@ package date;
 
 import java.util.Scanner;
 import java.util.regex.*;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 /**
  *
@@ -32,40 +31,37 @@ public class Date {
                 int day=Integer.parseInt(date.substring(0,2));
                 int month=Integer.parseInt(date.substring(3,5));
                 int year=Integer.parseInt(date.substring(6));
-                if (year>1) {
-                    if (month==2) {
+                if (!Pattern.compile("0").matcher(year+"").matches()) {
+                    if (Pattern.compile("2").matcher(day+"").matches()) {
                         if (leapYear(year)) {
-                            if (day<=29) {
+                            if (Pattern.compile("[12]?\\d").matcher(day+"").matches()) {
                                 System.out.println("es válida");
                             }else System.out.println("no es válida");
                         }else{
-                            if (day<=28) {
+                            if (Pattern.compile("1?\\d|2?[0-8]|\\d").matcher(day+"").matches()) {
                                 System.out.println("es válida");
                             }else System.out.println("no es válida");
                         }
                     }else{
                         if (Pattern.compile("(1|3|5|7|8|10|12)").matcher(month+"").matches()) {
-                            if (day<=31) {
+                            if (Pattern.compile("[12]?\\d|3[10]").matcher(day+"").matches()) {
                                 System.out.println("es válida");
                             }else System.out.println("no es válida");
                         }else{
-                            if (day<=30) {
+                            if (Pattern.compile("[12]?\\d|30").matcher(day+"").matches()) {
                                 System.out.println("es válida");
                             }else System.out.println("no es válida");
                         }
                     }
                 }else System.out.println("no es válida");
             }else System.out.println("no es válida");
-            if (matcher.matches()) {
-                System.out.println(" es válido");
-            }else System.out.println(" no es válido");
             System.out.print("1. Continuar    2. Salir ");
             option=sc.nextInt();
         }while(option==1);
     }
     
     public static boolean leapYear(int year){
-        if (year%4==0) {
+        if (year%4==0 /*&& Pattern.compile("(\\d{2})?").matcher(year+"").matches()*/) {
             if (year%100!=0) {//Bisiesto
                 return true;
             }else if (year%400==0) {//Bisiesto
