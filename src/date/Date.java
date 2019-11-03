@@ -59,7 +59,7 @@ public class Date {
             if (matcher.matches()) {
                 System.out.println(" es válido");
             }else System.out.println(" no es válido");
-            System.out.print("1. Continuar    2. Salir");
+            System.out.print("1. Continuar    2. Salir ");
             option=sc.nextInt();
         }while(option==1);
     }
