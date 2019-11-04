@@ -66,7 +66,6 @@ public class Date {
             if (!Pattern.compile("(\\d{2})?0?0").matcher(year+"").matches()) {//numeros divisibles entre 100 (negación)
                 return true;
             }else if (Pattern.compile("([13579][62]|[2468]?[048]|)00").matcher(year+"").matches()) {//numeros divisibles entre 400
-                System.out.println("aro");
                 return true;
             }else return false;
         }else return false;
